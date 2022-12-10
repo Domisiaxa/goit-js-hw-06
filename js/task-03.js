@@ -13,16 +13,11 @@ const images = [
   },
 ];
 
-let listOfImages = document.querySelector(".gallery");
-console.log(listOfImages);
-
-if (listOfImages && listOfImages.classList) {
-  listOfImages.classList.add("container");
-}
-
-images.forEach((imageItem) => {
-  listOfImages.insertAdjacentHTML(
-    "beforeend",
-    `<li style="padding: 25px; list-style-type: none; display: inline;" ><img height="360" width="540" src="${imageItem.url}" alt="${imageItem.alt} "style="border: dashed #FF0066 4px"/></li>`
-  );
-});
+const imagesList = document.querySelector("ul.gallery");
+const createImagesListItem = images
+  .map(
+    (image) =>
+      `<li class="gallery__item"><img class="gallery__image" src="${image.url}" alt="${image.alt}"></li>`
+  )
+  .join("");
+imagesList.insertAdjacentHTML("afterbegin", createImagesListItem);
